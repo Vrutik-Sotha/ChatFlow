@@ -25,6 +25,8 @@ const io = new Server(server, {
   },
 });
 
+initSocket(io);
+
 app.use(
   cors({
     origin: process.env.CLIENT_URL,

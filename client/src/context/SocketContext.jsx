@@ -20,7 +20,11 @@ export const SocketProvider = ({ children }) => {
   useEffect(() => {
     if (!authUser) return;
 
-    const socket = io("http://localhost:5000", { withCredentials: true });
+    const socket = io(import.meta.env.VITE_SOCKET_URL, {
+  withCredentials: true,
+  autoConnect: true,
+  transports: ["websocket", "polling"],
+});
     socketRef.current = socket;
 
     socket.emit("user:online", authUser._id);
